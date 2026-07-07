@@ -6,6 +6,7 @@ use App\Models\Product;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -18,15 +19,22 @@ class ProductsTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->description(fn (Product $record): string => $record->short_description)
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->weight('bold')
+                    ->wrap(),
                 TextColumn::make('category')
                     ->badge()
+                    ->color('info')
                     ->sortable(),
                 TextColumn::make('price')
                     ->money('GBP')
+                    ->placeholder('Quote only')
                     ->sortable(),
                 TextColumn::make('material')
+                    ->badge()
+                    ->color('gray')
                     ->toggleable(),
                 IconColumn::make('active')
                     ->boolean(),
@@ -34,8 +42,12 @@ class ProductsTable
             ->filters([
                 SelectFilter::make('category')->options(Product::CATEGORIES),
             ])
+            ->emptyStateIcon(Heroicon::OutlinedShoppingBag)
+            ->emptyStateHeading('No products yet')
+            ->emptyStateDescription('Add simple product directions or quote-only examples for the future shop area.')
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->label('Open'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -1,0 +1,249 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+:root {
+    --c3d-ink: #17212b;
+    --c3d-ink-soft: #23303b;
+    --c3d-paper: #f7f7f4;
+    --c3d-panel: #ffffff;
+    --c3d-muted: #66707a;
+    --c3d-teal: #0f8f8a;
+    --c3d-orange: #e86f2d;
+    --c3d-line: rgba(23, 33, 43, 0.12);
+}
+
+.fi-body {
+    background:
+        linear-gradient(135deg, rgba(15, 143, 138, 0.08), transparent 28rem),
+        linear-gradient(315deg, rgba(232, 111, 45, 0.08), transparent 30rem),
+        var(--c3d-paper);
+    color: var(--c3d-ink);
+}
+
+.fi-sidebar,
+.fi-topbar nav {
+    background: color-mix(in srgb, var(--c3d-ink) 97%, black);
+    color: white;
+}
+
+.fi-sidebar {
+    border-right: 0;
+    box-shadow: 18px 0 40px rgba(23, 33, 43, 0.08);
+}
+
+.fi-sidebar-header,
+.fi-topbar {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.fi-logo {
+    color: white;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.fi-logo img {
+    border-radius: 0.6rem;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+.fi-sidebar-item a {
+    border-radius: 0.8rem;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.fi-sidebar-item a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+.fi-sidebar-item.fi-active a,
+.fi-sidebar-item a[aria-current='page'] {
+    background: linear-gradient(135deg, rgba(232, 111, 45, 0.95), rgba(15, 143, 138, 0.9));
+    color: white;
+    box-shadow: 0 12px 28px rgba(15, 143, 138, 0.18);
+}
+
+.fi-main,
+.fi-simple-main {
+    background: transparent;
+}
+
+.fi-main-ctn {
+    background: transparent;
+}
+
+.fi-header-heading,
+.fi-simple-header-heading {
+    color: var(--c3d-ink);
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.fi-fo-field-label,
+.fi-fo-field-label-content,
+.fi-section-header-heading,
+.fi-section-header-description {
+    color: var(--c3d-ink) !important;
+}
+
+.fi-section-header-description {
+    color: var(--c3d-muted) !important;
+}
+
+.fi-section,
+.fi-ta,
+.fi-wi-widget,
+.fi-simple-main .fi-section {
+    border: 1px solid var(--c3d-line);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--c3d-panel) 96%, var(--c3d-paper));
+    box-shadow: 0 18px 45px rgba(23, 33, 43, 0.08);
+}
+
+.fi-ta-header,
+.fi-ta-content,
+.fi-section-content {
+    border-color: rgba(23, 33, 43, 0.08);
+}
+
+.fi-btn {
+    border-radius: 0.75rem;
+    font-weight: 800;
+}
+
+.fi-btn-color-primary,
+.fi-color-primary.fi-btn,
+.fi-color-primary.fi-ac-btn-action {
+    background: var(--c3d-orange);
+    color: white;
+}
+
+.fi-input-wrp,
+.fi-select-input,
+.fi-fo-field-wrp input,
+.fi-fo-field-wrp textarea {
+    border-radius: 0.75rem;
+}
+
+.fi-badge {
+    border-radius: 999px;
+    font-weight: 800;
+}
+
+.fi-ta-table thead {
+    background: rgba(23, 33, 43, 0.035);
+}
+
+.fi-ta-row:hover {
+    background: rgba(15, 143, 138, 0.045);
+}
+
+.fi-simple-layout {
+    background:
+        linear-gradient(135deg, rgba(23, 33, 43, 0.96), rgba(23, 33, 43, 0.86)),
+        url('/images/bambu-p1s-ams-hero.png') center / cover;
+}
+
+.fi-simple-page {
+    min-height: 100vh;
+    backdrop-filter: blur(1px);
+}
+
+.fi-simple-main {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(247, 247, 244, 0.96);
+    color: var(--c3d-ink);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+}
+
+.fi-simple-main label,
+.fi-simple-main .fi-fo-field-wrp-label,
+.fi-simple-main .fi-fo-field-wrp-label span,
+.fi-simple-main .fi-fo-field-label,
+.fi-simple-main .fi-fo-field-label-content,
+.fi-simple-main .fi-checkbox-list-option-label,
+.fi-simple-main .fi-simple-header-heading {
+    color: var(--c3d-ink) !important;
+}
+
+.fi-simple-main .fi-fo-field-wrp-error-message {
+    color: #be123c;
+}
+
+.fi-simple-main .fi-btn-color-primary,
+.fi-simple-main .fi-btn-color-primary span,
+.fi-simple-main .fi-color-primary.fi-btn,
+.fi-simple-main .fi-color-primary.fi-btn span,
+.fi-btn-color-primary,
+.fi-btn-color-primary span,
+.fi-color-primary.fi-btn,
+.fi-color-primary.fi-btn span {
+    color: white !important;
+}
+
+.c3d-admin-hero {
+    overflow: hidden;
+    border: 1px solid rgba(23, 33, 43, 0.1);
+    border-radius: 1rem;
+    background:
+        linear-gradient(135deg, rgba(23, 33, 43, 0.96), rgba(23, 33, 43, 0.82)),
+        url('/images/bambu-p1s-ams-hero.png') center / cover;
+    box-shadow: 0 22px 55px rgba(23, 33, 43, 0.16);
+}
+
+.c3d-admin-hero__inner {
+    display: grid;
+    gap: 1.5rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+@media (min-width: 768px) {
+    .c3d-admin-hero__inner {
+        grid-template-columns: 1fr auto;
+        align-items: end;
+    }
+}
+
+.c3d-admin-eyebrow {
+    color: #79d7d2;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.c3d-admin-hero h2 {
+    margin-top: 0.45rem;
+    max-width: 44rem;
+    color: white;
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    font-weight: 950;
+    line-height: 1;
+}
+
+.c3d-admin-hero p {
+    margin-top: 0.75rem;
+    max-width: 42rem;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.c3d-admin-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.c3d-admin-pill {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 0.6rem 0.85rem;
+    background: rgba(255, 255, 255, 0.09);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 800;
+}

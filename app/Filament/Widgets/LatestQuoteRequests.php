@@ -1,37 +1,37 @@
 <?php
 
-namespace App\Filament\Resources\QuoteRequests\Tables;
+namespace App\Filament\Widgets;
 
+use App\Filament\Resources\QuoteRequests\QuoteRequestResource;
 use App\Models\QuoteRequest;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Filament\Widgets\TableWidget;
+use Illuminate\Database\Eloquent\Builder;
 
-class QuoteRequestsTable
+class LatestQuoteRequests extends TableWidget
 {
-    public static function configure(Table $table): Table
+    protected int|string|array $columnSpan = 'full';
+
+    protected function getTableHeading(): string
+    {
+        return 'Latest quote requests';
+    }
+
+    public function table(Table $table): Table
     {
         return $table
+            ->query(fn (): Builder => QuoteRequest::query()->latest())
             ->columns([
                 TextColumn::make('created_at')
                     ->label('Received')
                     ->since()
-                    ->description(fn (QuoteRequest $record): string => $record->created_at->format('d M Y, H:i'))
                     ->sortable(),
                 TextColumn::make('name')
                     ->description(fn (QuoteRequest $record): ?string => $record->postcode)
                     ->searchable()
-                    ->sortable()
                     ->weight('bold'),
-                TextColumn::make('email')
-                    ->label('Contact')
-                    ->description(fn (QuoteRequest $record): ?string => $record->phone)
-                    ->searchable()
-                    ->copyable(),
                 TextColumn::make('service_type')
                     ->label('Service')
                     ->formatStateUsing(fn (string $state): string => QuoteRequest::SERVICE_TYPES[$state] ?? $state)
@@ -50,22 +50,10 @@ class QuoteRequestsTable
                         default => 'info',
                     }),
             ])
-            ->filters([
-                SelectFilter::make('service_type')->options(QuoteRequest::SERVICE_TYPES),
-                SelectFilter::make('status')->options(QuoteRequest::STATUSES),
-            ])
-            ->defaultSort('created_at', 'desc')
+            ->recordUrl(fn (QuoteRequest $record): string => QuoteRequestResource::getUrl('edit', ['record' => $record]))
+            ->paginated(false)
             ->emptyStateIcon(Heroicon::OutlinedInbox)
             ->emptyStateHeading('No quote requests yet')
-            ->emptyStateDescription('Customer enquiries from the request-a-quote form will land here.')
-            ->recordActions([
-                EditAction::make()
-                    ->label('Open'),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->emptyStateDescription('New website enquiries will appear here as soon as customers submit the quote form.');
     }
 }

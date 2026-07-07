@@ -22,6 +22,10 @@ class QuoteRequestResource extends Resource
 
     protected static ?string $navigationLabel = 'Quote requests';
 
+    protected static ?string $modelLabel = 'quote request';
+
+    protected static ?string $pluralModelLabel = 'quote requests';
+
     protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
