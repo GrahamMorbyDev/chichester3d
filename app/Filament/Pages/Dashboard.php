@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Widgets\LatestQuoteRequests;
-use App\Filament\Widgets\QuoteRequestStats;
 use BackedEnum;
 use Filament\Pages\Dashboard as BaseDashboard;
 use Filament\Schemas\Components\View;
@@ -26,7 +25,6 @@ class Dashboard extends BaseDashboard
     public function getWidgets(): array
     {
         return [
-            QuoteRequestStats::class,
             LatestQuoteRequests::class,
         ];
     }

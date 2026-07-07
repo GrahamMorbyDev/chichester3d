@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Dashboard;
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -33,9 +34,11 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('2.2rem')
             ->favicon(asset('favicon.svg'))
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->defaultThemeMode(ThemeMode::Light)
             ->maxContentWidth(Width::ScreenTwoExtraLarge)
             ->simplePageMaxContentWidth(Width::Large)
-            ->sidebarWidth('18rem')
+            ->sidebarWidth('16rem')
+            ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Orange,
                 'gray' => Color::Zinc,
