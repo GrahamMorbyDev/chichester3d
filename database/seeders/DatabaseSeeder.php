@@ -17,11 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'C3D Admin',
-            'email' => 'admin@chichester3dprinting.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::query()->updateOrCreate(
+            ['email' => 'admin@chichester3dprinting.com'],
+            [
+                'name' => 'C3D Admin',
+                'password' => Hash::make('bVJmTww7mxYZM3dKtRjN'),
+            ],
+        );
 
         Product::query()->updateOrCreate(
             ['slug' => 'gaming-case-bookends'],
