@@ -1,0 +1,223 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Product;
+use Illuminate\Support\Arr;
+use Illuminate\View\View;
+
+class PageController extends Controller
+{
+    public function home(): View
+    {
+        return view('pages.home', [
+            ...$this->seo(
+                title: '3D Printing Chichester | Local PLA Prototypes & Short Runs',
+                description: 'Chichester 3D Printing.com provides local Bambu P1S PLA printing, prototypes, replacement parts, custom design and small batch runs across West Sussex and Hampshire.',
+                routeName: 'home',
+                keywords: [
+                    '3D printing Chichester',
+                    '3D printing West Sussex',
+                    '3D printing Hampshire',
+                    'local 3D printing service',
+                    'PLA 3D printing',
+                    'Bambu P1S printing',
+                    'AMS multicolour 3D printing',
+                    'prototype printing Chichester',
+                    'replacement plastic parts',
+                    'small batch 3D printing',
+                ],
+            ),
+        ]);
+    }
+
+    public function services(): View
+    {
+        return view('pages.services', [
+            ...$this->seo(
+                title: '3D Printing Services Chichester | Print Files, Design & Small Batch',
+                description: 'Explore C3D services: print my file, design and print, custom replacement parts, prototypes and small batch PLA 3D printing around Chichester.',
+                routeName: 'services',
+                keywords: [
+                    '3D printing services Chichester',
+                    'print STL file Chichester',
+                    'design and print 3D parts',
+                    'custom 3D printing West Sussex',
+                    'small batch printing Hampshire',
+                    'prototype printing service',
+                ],
+            ),
+        ]);
+    }
+
+    public function printFile(): View
+    {
+        return view('pages.print-file', [
+            ...$this->seo(
+                title: 'Print My File Chichester | Upload STL, 3MF, STEP or OBJ',
+                description: 'Upload your STL, 3MF, STEP or OBJ file for local PLA 3D printing on Bambu P1S printers with AMS multicolour capability in Chichester.',
+                routeName: 'print-file',
+                keywords: [
+                    'print my file Chichester',
+                    'upload STL Chichester',
+                    '3MF 3D printing',
+                    'STEP file 3D printing',
+                    'OBJ 3D printing service',
+                    'Bambu P1S PLA printing',
+                    'AMS multicolour PLA printing',
+                ],
+            ),
+        ]);
+    }
+
+    public function smallBatch(): View
+    {
+        return view('pages.small-batch', [
+            ...$this->seo(
+                title: 'Small Batch 3D Printing Chichester | 5-100 PLA Parts',
+                description: 'Small batch PLA 3D printing in Chichester for short runs of brackets, mounts, clips, product samples, jigs and practical parts.',
+                routeName: 'small-batch',
+                keywords: [
+                    'small batch 3D printing Chichester',
+                    'short run 3D printing',
+                    'low volume 3D printing',
+                    'PLA batch printing',
+                    'prototype batch printing',
+                    '3D printed brackets',
+                    '3D printed mounts',
+                    'product sample printing',
+                ],
+            ),
+        ]);
+    }
+
+    public function shop(): View
+    {
+        return view('pages.shop', [
+            'products' => Product::query()->where('active', true)->latest()->get(),
+            ...$this->seo(
+                title: '3D Printed Products Chichester | Desk, Gaming, Garden & Custom Parts',
+                description: 'Browse C3D printed product lines including gaming case bookends, desk accessories, home organisation, garden fittings and custom printed parts.',
+                routeName: 'shop',
+                keywords: [
+                    '3D printed products Chichester',
+                    'gaming case bookends',
+                    '3D printed desk accessories',
+                    '3D printed garden fittings',
+                    'custom printed parts',
+                    'PLA printed products',
+                ],
+            ),
+        ]);
+    }
+
+    public function about(): View
+    {
+        return view('pages.about', [
+            ...$this->seo(
+                title: 'About C3D | Local 3D Printing Workshop in Chichester',
+                description: 'Learn about Chichester 3D Printing.com, a practical local digital workshop for low-volume PLA prints, prototypes and replacement parts.',
+                routeName: 'about',
+                keywords: [
+                    'about Chichester 3D Printing',
+                    'local 3D printing workshop',
+                    '3D printing Chichester',
+                    'West Sussex 3D printing',
+                    'Hampshire 3D printing',
+                ],
+            ),
+        ]);
+    }
+
+    public function quote(): View
+    {
+        return view('pages.quote', [
+            ...$this->seo(
+                title: 'Request a 3D Printing Quote | Upload STL, STEP, OBJ or Photos',
+                description: 'Request a local 3D printing quote from C3D. Upload STL, 3MF, STEP, OBJ, photos or PDFs for PLA prototypes, replacement parts and small batch runs.',
+                routeName: 'quote',
+                keywords: [
+                    '3D printing quote Chichester',
+                    'upload STL for quote',
+                    'STEP file 3D printing',
+                    'OBJ file printing',
+                    'replacement part quote',
+                    'small batch 3D printing quote',
+                    'custom 3D printing quote',
+                ],
+            ),
+        ]);
+    }
+
+    /**
+     * @param  array<int, string>  $keywords
+     * @return array<string, mixed>
+     */
+    private function seo(string $title, string $description, string $routeName, array $keywords): array
+    {
+        $baseKeywords = [
+            'Chichester 3D Printing.com',
+            'C3D',
+            '3D printing Chichester',
+            '3D printing West Sussex',
+            '3D printing Hampshire',
+        ];
+
+        return [
+            'metaTitle' => $title,
+            'metaDescription' => $description,
+            'metaKeywords' => implode(', ', array_values(array_unique([...$keywords, ...$baseKeywords]))),
+            'canonicalUrl' => route($routeName),
+            'ogTitle' => $title,
+            'ogDescription' => $description,
+            'ogImage' => asset('images/bambu-p1s-ams-hero.png'),
+            'ogType' => 'website',
+            'twitterCard' => 'summary_large_image',
+            'structuredData' => $this->structuredData($title, $description),
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function structuredData(string $title, string $description): array
+    {
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'LocalBusiness',
+            '@id' => route('home').'#business',
+            'name' => 'Chichester 3D Printing.com',
+            'alternateName' => 'C3D',
+            'url' => route('home'),
+            'image' => asset('images/bambu-p1s-ams-hero.png'),
+            'description' => $description,
+            'areaServed' => Arr::map(['Chichester', 'West Sussex', 'Hampshire'], fn (string $place): array => [
+                '@type' => 'Place',
+                'name' => $place,
+            ]),
+            'makesOffer' => [
+                [
+                    '@type' => 'Offer',
+                    'name' => 'Print My File',
+                    'description' => 'Upload STL, 3MF, STEP or OBJ files for local PLA 3D printing.',
+                ],
+                [
+                    '@type' => 'Offer',
+                    'name' => 'Design & Print',
+                    'description' => 'Custom design support for replacement parts, prototypes and practical printed objects.',
+                ],
+                [
+                    '@type' => 'Offer',
+                    'name' => 'Small Batch 3D Printing',
+                    'description' => 'Low-volume PLA print runs for prototypes, brackets, mounts, samples and display items.',
+                ],
+            ],
+            'sameAs' => [],
+            'slogan' => 'Local 3D printing in Chichester',
+            'subjectOf' => [
+                '@type' => 'WebPage',
+                'name' => $title,
+            ],
+        ];
+    }
+}
