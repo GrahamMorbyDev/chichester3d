@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $metaTitle ?? 'Chichester 3D Printing.com' }}</title>
+        <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" sizes="512x512">
+        <link rel="alternate icon" href="{{ asset('favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
         <meta name="description" content="{{ $metaDescription ?? 'Local 3D printing in Chichester for prototypes, small batch printing, custom parts and replacement plastic parts.' }}">
         <meta name="keywords" content="{{ $metaKeywords ?? '3D printing Chichester, 3D printing West Sussex, 3D printing Hampshire, prototype printing Chichester, custom 3D printing, replacement plastic parts, small batch 3D printing' }}">
         <meta name="robots" content="{{ $metaRobots ?? 'index, follow' }}">
