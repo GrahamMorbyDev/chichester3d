@@ -17,9 +17,55 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+        $response->assertSee('<link rel="manifest"', false);
+        $response->assertSee('<link rel="sitemap" type="application/xml"', false);
+        $response->assertSee('<meta name="geo.placename" content="Chichester">', false);
         $response->assertSee('<meta name="description"', false);
+        $response->assertSee('max-image-preview:large', false);
         $response->assertSee('<meta property="og:title"', false);
+        $response->assertSee('<meta property="og:image:alt"', false);
         $response->assertSee('<script type="application/ld+json">', false);
+    }
+
+    public function test_sitemap_exposes_public_pages_and_images(): void
+    {
+        $response = $this->get('/sitemap.xml');
+
+        $response->assertOk();
+        $response->assertHeader('content-type', 'application/xml; charset=UTF-8');
+        $response->assertSee('<urlset', false);
+        $response->assertSee(route('home'), false);
+        $response->assertSee(route('services'), false);
+        $response->assertSee(route('print-file'), false);
+        $response->assertSee(route('small-batch'), false);
+        $response->assertSee(route('about'), false);
+        $response->assertSee(route('quote'), false);
+        $response->assertSee('<image:image>', false);
+        $response->assertDontSee('/admin', false);
+        $response->assertDontSee('/request-a-quote/success', false);
+    }
+
+    public function test_robots_points_crawlers_to_the_sitemap_and_blocks_private_paths(): void
+    {
+        $response = $this->get('/robots.txt');
+
+        $response->assertOk();
+        $response->assertHeader('content-type', 'text/plain; charset=UTF-8');
+        $response->assertSee('User-agent: *', false);
+        $response->assertSee('Disallow: /admin', false);
+        $response->assertSee('Disallow: /request-a-quote/success/', false);
+        $response->assertSee('Sitemap: '.url('/sitemap.xml'), false);
+    }
+
+    public function test_site_manifest_contains_c3d_app_metadata(): void
+    {
+        $response = $this->get('/site.webmanifest');
+
+        $response->assertOk();
+        $response->assertHeader('content-type', 'application/manifest+json; charset=UTF-8');
+        $response->assertJsonPath('name', 'Chichester 3D Printing.com');
+        $response->assertJsonPath('short_name', 'C3D');
+        $response->assertJsonPath('theme_color', '#17212b');
     }
 
     public function test_quote_request_can_be_submitted_with_an_upload(): void

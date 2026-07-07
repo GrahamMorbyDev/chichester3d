@@ -2,7 +2,13 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\QuoteRequestController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('seo.sitemap');
+Route::get('/robots.txt', [SeoController::class, 'robots'])->name('seo.robots');
+Route::get('/site.webmanifest', [SeoController::class, 'manifest'])->name('seo.manifest');
+Route::get('/humans.txt', [SeoController::class, 'humans'])->name('seo.humans');
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/services', [PageController::class, 'services'])->name('services');

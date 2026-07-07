@@ -8,10 +8,21 @@
         <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" sizes="512x512">
         <link rel="alternate icon" href="{{ asset('favicon.ico') }}">
         <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+        <link rel="manifest" href="{{ route('seo.manifest') }}">
+        <link rel="sitemap" type="application/xml" href="{{ route('seo.sitemap') }}">
+        <meta name="theme-color" content="#17212b">
+        <meta name="application-name" content="Chichester 3D Printing.com">
+        <meta name="apple-mobile-web-app-title" content="C3D">
+        <meta name="author" content="Chichester 3D Printing.com">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="geo.region" content="GB-WSX">
+        <meta name="geo.placename" content="Chichester">
         <meta name="description" content="{{ $metaDescription ?? 'Local 3D printing in Chichester for prototypes, small batch printing, custom parts and replacement plastic parts.' }}">
         <meta name="keywords" content="{{ $metaKeywords ?? '3D printing Chichester, 3D printing West Sussex, 3D printing Hampshire, prototype printing Chichester, custom 3D printing, replacement plastic parts, small batch 3D printing' }}">
-        <meta name="robots" content="{{ $metaRobots ?? 'index, follow' }}">
+        <meta name="robots" content="{{ $metaRobots ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}">
         <link rel="canonical" href="{{ $canonicalUrl ?? url()->current() }}">
+        <link rel="alternate" hreflang="en-gb" href="{{ $canonicalUrl ?? url()->current() }}">
+        <link rel="alternate" hreflang="x-default" href="{{ $canonicalUrl ?? url()->current() }}">
 
         <meta property="og:site_name" content="Chichester 3D Printing.com">
         <meta property="og:title" content="{{ $ogTitle ?? $metaTitle ?? 'Chichester 3D Printing.com' }}">
@@ -19,12 +30,14 @@
         <meta property="og:type" content="{{ $ogType ?? 'website' }}">
         <meta property="og:url" content="{{ $canonicalUrl ?? url()->current() }}">
         <meta property="og:image" content="{{ $ogImage ?? asset('images/bambu-p1s-ams-hero.png') }}">
+        <meta property="og:image:alt" content="{{ $ogImageAlt ?? 'Local 3D printing workshop image for Chichester 3D Printing.com' }}">
         <meta property="og:locale" content="en_GB">
 
         <meta name="twitter:card" content="{{ $twitterCard ?? 'summary_large_image' }}">
         <meta name="twitter:title" content="{{ $ogTitle ?? $metaTitle ?? 'Chichester 3D Printing.com' }}">
         <meta name="twitter:description" content="{{ $ogDescription ?? $metaDescription ?? 'Local 3D printing in Chichester for prototypes, small batch printing, custom parts and replacement plastic parts.' }}">
         <meta name="twitter:image" content="{{ $ogImage ?? asset('images/bambu-p1s-ams-hero.png') }}">
+        <meta name="twitter:image:alt" content="{{ $ogImageAlt ?? 'Local 3D printing workshop image for Chichester 3D Printing.com' }}">
 
         @isset($structuredData)
             <script type="application/ld+json">

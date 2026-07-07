@@ -171,6 +171,7 @@ class PageController extends Controller
             'ogTitle' => $title,
             'ogDescription' => $description,
             'ogImage' => asset('images/bambu-p1s-ams-hero.png'),
+            'ogImageAlt' => 'Bambu P1S style 3D printer with AMS multicolour PLA filament setup for local Chichester 3D printing',
             'ogType' => 'website',
             'twitterCard' => 'summary_large_image',
             'structuredData' => $this->structuredData($title, $description),
