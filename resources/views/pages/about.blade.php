@@ -7,8 +7,9 @@
             <h1 class="text-4xl font-black leading-tight sm:text-7xl">A small digital workshop for practical local printing.</h1>
         </div>
         <div class="space-y-5 text-lg leading-8 text-c3d-muted">
-            <p>C3D serves Chichester, West Sussex, Hampshire and nearby areas with low-volume, custom 3D printing. The focus is useful work: replacement parts, prototypes, brackets, mounts, hobby prints, garden fittings, sensor housings and small business display items.</p>
-            <p>Phase 1 keeps things clear: send a file, photo or description, then we review it and quote before anything is printed. No fake checkout, no confusing bulk pricing, no oversized promises.</p>
+            <p>Chichester 3D Printing.com is a local 3D printing service for homes, makers, small businesses and practical problem-solvers across Chichester, West Sussex, Hampshire and nearby areas.</p>
+            <p>We print customer files, help design and print custom parts, and produce small batches of useful components such as replacement plastic parts, prototypes, brackets, mounts, garden fittings, sensor housings, hobby pieces and display items.</p>
+            <p>Every job starts with a quick review. Send a 3D file, photo, sketch or description, and we will check what is possible, advise on material, colour and finish, then provide a clear quote before printing begins.</p>
             <a href="{{ route('quote') }}" class="inline-flex rounded-lg bg-c3d-teal px-5 py-3 text-sm font-black text-white">Start a request</a>
         </div>
     </section>
