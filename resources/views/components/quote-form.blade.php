@@ -1,5 +1,12 @@
 <form action="{{ route('quote.store') }}" method="POST" enctype="multipart/form-data" class="grid gap-5 rounded-lg border border-c3d-ink/10 bg-white p-5 shadow-sm sm:p-8">
     @csrf
+    <input type="hidden" name="quote_started_at" value="{{ now()->timestamp }}">
+    <div class="hidden" aria-hidden="true">
+        <label>
+            Leave this field blank
+            <input type="text" name="website" value="" tabindex="-1" autocomplete="off">
+        </label>
+    </div>
 
     @if ($errors->any())
         <div class="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">

@@ -5,12 +5,20 @@ namespace Tests\Feature;
 use App\Models\QuoteRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutMiddleware(ThrottleRequests::class);
+    }
 
     public function test_homepage_returns_successfully(): void
     {
@@ -75,6 +83,7 @@ class ExampleTest extends TestCase
         $response = $this->post(route('quote.store'), [
             'name' => 'Alex Maker',
             'email' => 'alex@example.com',
+            'quote_started_at' => now()->subSeconds(10)->timestamp,
             'phone' => '01243 000000',
             'postcode' => 'PO19',
             'service_type' => 'print_file',
@@ -102,6 +111,7 @@ class ExampleTest extends TestCase
         $response = $this->from(route('quote'))->post(route('quote.store'), [
             'name' => '',
             'email' => 'not-an-email',
+            'quote_started_at' => now()->subSeconds(10)->timestamp,
             'service_type' => 'bulk_factory',
             'description' => 'Too short',
             'quantity' => 0,
@@ -110,5 +120,60 @@ class ExampleTest extends TestCase
         $response->assertRedirect(route('quote'));
         $response->assertSessionHasErrors(['name', 'email', 'service_type', 'description', 'quantity']);
         $this->assertDatabaseCount('quote_requests', 0);
+    }
+
+    public function test_quote_request_rejects_honeypot_spam(): void
+    {
+        $response = $this->from(route('quote'))->post(route('quote.store'), [
+            ...$this->validQuotePayload(),
+            'website' => 'https://spam.example',
+        ]);
+
+        $response->assertRedirect(route('quote'));
+        $response->assertSessionHasErrors(['website']);
+        $this->assertDatabaseCount('quote_requests', 0);
+    }
+
+    public function test_quote_request_rejects_marketing_spam_content(): void
+    {
+        $response = $this->from(route('quote'))->post(route('quote.store'), [
+            ...$this->validQuotePayload(),
+            'description' => 'Hello, we recently ran a backend analysis of your website and can improve your search engine optimization, online visibility, Google, Bing rankings, and arrange a quick phone call.',
+        ]);
+
+        $response->assertRedirect(route('quote'));
+        $response->assertSessionHasErrors(['description']);
+        $this->assertDatabaseCount('quote_requests', 0);
+    }
+
+    public function test_quote_request_rejects_submissions_that_arrive_too_fast(): void
+    {
+        $response = $this->from(route('quote'))->post(route('quote.store'), [
+            ...$this->validQuotePayload(),
+            'quote_started_at' => now()->timestamp,
+        ]);
+
+        $response->assertRedirect(route('quote'));
+        $response->assertSessionHasErrors(['description']);
+        $this->assertDatabaseCount('quote_requests', 0);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function validQuotePayload(): array
+    {
+        return [
+            'name' => 'Alex Maker',
+            'email' => 'alex@example.com',
+            'quote_started_at' => now()->subSeconds(10)->timestamp,
+            'service_type' => 'print_file',
+            'project_type' => 'replacement_part',
+            'description' => 'I need a small replacement plastic bracket printed from an STL file for a workshop repair.',
+            'quantity' => 3,
+            'material_preference' => 'PLA',
+            'colour_preference' => 'Black',
+            'measurements' => 'Approx 40mm by 20mm, fit is more important than finish.',
+        ];
     }
 }

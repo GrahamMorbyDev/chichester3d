@@ -19,7 +19,7 @@ Route::get('/shop', [PageController::class, 'shop'])->name('shop');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'quote'])->name('contact');
 Route::get('/request-a-quote', [PageController::class, 'quote'])->name('quote');
-Route::post('/request-a-quote', [QuoteRequestController::class, 'store'])->name('quote.store');
+Route::post('/request-a-quote', [QuoteRequestController::class, 'store'])->middleware('throttle:quote-requests')->name('quote.store');
 Route::get('/request-a-quote/success/{quoteRequest}', [QuoteRequestController::class, 'success'])->name('quote.success');
 
 Route::get('/admin/quote-request-files/{file}/download', [QuoteRequestController::class, 'downloadFile'])
