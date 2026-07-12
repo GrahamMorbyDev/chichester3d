@@ -49,6 +49,31 @@
     </section>
 
     <section class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+        <div class="mb-8 max-w-3xl">
+            <p class="mb-3 text-xs font-black uppercase tracking-[0.08em] text-c3d-teal">Local 3D printing help</p>
+            <h2 class="text-4xl font-black leading-tight sm:text-5xl">For prototypes, small batches and first-time print jobs.</h2>
+            <p class="mt-5 leading-8 text-c3d-muted">C3D helps local customers across Chichester, West Sussex and Hampshire work out what can be printed, what needs changing, and how to get a useful PLA part made without ordering from a faceless factory.</p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <a class="rounded-lg border border-c3d-ink/10 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-c3d-ink/10" href="{{ route('sussex-prototyping') }}">
+                <span class="text-sm font-black text-c3d-orange">Sussex prototyping</span>
+                <h3 class="mt-4 text-2xl font-black">3D printing & prototyping in Sussex</h3>
+                <p class="mt-3 leading-7 text-c3d-muted">Practical prototype prints, brackets, mounts, samples and one-off parts for local projects.</p>
+            </a>
+            <a class="rounded-lg border border-c3d-ink/10 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-c3d-ink/10" href="{{ route('beginners') }}">
+                <span class="text-sm font-black text-c3d-orange">Beginner friendly</span>
+                <h3 class="mt-4 text-2xl font-black">New to 3D printing?</h3>
+                <p class="mt-3 leading-7 text-c3d-muted">Send a file, photo, sketch or description and get clear advice before anything is printed.</p>
+            </a>
+            <a class="rounded-lg border border-c3d-ink/10 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-c3d-ink/10" href="{{ route('small-batch') }}">
+                <span class="text-sm font-black text-c3d-orange">Short runs</span>
+                <h3 class="mt-4 text-2xl font-black">Small batch 3D printing</h3>
+                <p class="mt-3 leading-7 text-c3d-muted">Low-volume PLA runs for 5 to 100 useful parts, samples and small business items.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         <div class="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
                 <p class="mb-3 text-xs font-black uppercase tracking-[0.08em] text-c3d-teal">Common jobs</p>

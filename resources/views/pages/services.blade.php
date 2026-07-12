@@ -21,5 +21,25 @@
                 </article>
             @endforeach
         </div>
+
+        <section class="mt-14 rounded-lg bg-c3d-ink p-6 text-white sm:p-8">
+            <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+                <div>
+                    <p class="mb-3 text-xs font-black uppercase tracking-[0.08em] text-c3d-teal">Local search help</p>
+                    <h2 class="text-3xl font-black leading-tight sm:text-4xl">Trying to work out if 3D printing is right for your job?</h2>
+                    <p class="mt-4 leading-8 text-white/70">Some customers arrive with a finished file. Others only have a broken part, photo or rough idea. Both are fine: C3D can review the job and tell you what is realistic before you spend money.</p>
+                </div>
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <a class="rounded-lg border border-white/10 bg-white/5 p-5 transition hover:bg-white/10" href="{{ route('sussex-prototyping') }}">
+                        <h3 class="font-black">3D printing & prototyping Sussex</h3>
+                        <p class="mt-2 text-sm leading-6 text-white/65">Local prototypes, replacement parts and useful short-run PLA prints.</p>
+                    </a>
+                    <a class="rounded-lg border border-white/10 bg-white/5 p-5 transition hover:bg-white/10" href="{{ route('beginners') }}">
+                        <h3 class="font-black">Beginner 3D printing help</h3>
+                        <p class="mt-2 text-sm leading-6 text-white/65">A clear first step if you are searching for clubs, courses or local advice.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
     </section>
 @endsection

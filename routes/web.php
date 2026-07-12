@@ -15,6 +15,8 @@ Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/print-my-file', [PageController::class, 'printFile'])->name('print-file');
 Route::get('/design-and-print', [PageController::class, 'quote'])->name('design-print');
 Route::get('/small-batch-printing', [PageController::class, 'smallBatch'])->name('small-batch');
+Route::get('/3d-printing-prototyping-sussex', [PageController::class, 'sussexPrototyping'])->name('sussex-prototyping');
+Route::get('/3d-printing-for-beginners-chichester', [PageController::class, 'beginners'])->name('beginners');
 Route::get('/shop', [PageController::class, 'shop'])->name('shop');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'quote'])->name('contact');

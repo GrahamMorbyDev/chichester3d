@@ -114,6 +114,10 @@
                     <div>
                         <h2 class="mb-2 font-bold text-c3d-ink">Local</h2>
                         <p>Collection around Chichester. Delivery and shipping available on request.</p>
+                        <div class="mt-3 flex flex-col gap-1">
+                            <a class="font-bold text-c3d-ink hover:text-c3d-teal" href="{{ route('sussex-prototyping') }}">Sussex prototyping</a>
+                            <a class="font-bold text-c3d-ink hover:text-c3d-teal" href="{{ route('beginners') }}">Beginner help</a>
+                        </div>
                     </div>
                 </div>
             </div>

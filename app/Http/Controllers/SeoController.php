@@ -133,6 +133,26 @@ class SeoController extends Controller
                 ],
             ],
             [
+                'loc' => route('sussex-prototyping'),
+                'lastmod' => $lastModified,
+                'changefreq' => 'monthly',
+                'priority' => '0.85',
+                'image' => [
+                    'loc' => asset('images/services-pipework-job.png'),
+                    'title' => 'Local Sussex 3D printing and prototyping job',
+                ],
+            ],
+            [
+                'loc' => route('beginners'),
+                'lastmod' => $lastModified,
+                'changefreq' => 'monthly',
+                'priority' => '0.75',
+                'image' => [
+                    'loc' => asset('images/print-my-file-workflow.png'),
+                    'title' => 'Beginner friendly local 3D printing help',
+                ],
+            ],
+            [
                 'loc' => route('about'),
                 'lastmod' => $lastModified,
                 'changefreq' => 'monthly',

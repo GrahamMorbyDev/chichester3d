@@ -91,6 +91,48 @@ class PageController extends Controller
         ]);
     }
 
+    public function sussexPrototyping(): View
+    {
+        return view('pages.sussex-prototyping', [
+            ...$this->seo(
+                title: '3D Printing & Prototyping Sussex | Local PLA Parts & Short Runs',
+                description: 'Local 3D printing and prototyping for Sussex, Chichester, West Sussex and nearby Hampshire. PLA prototypes, brackets, mounts, samples and short production runs.',
+                routeName: 'sussex-prototyping',
+                keywords: [
+                    '3D printing and prototyping Sussex',
+                    '3D printing prototyping West Sussex',
+                    'prototype printing Sussex',
+                    'local 3D printing Sussex',
+                    '3D printed prototypes Chichester',
+                    'PLA prototype printing',
+                    'short run 3D printing Sussex',
+                    'small batch 3D printing Sussex',
+                ],
+            ),
+        ]);
+    }
+
+    public function beginners(): View
+    {
+        return view('pages.beginners', [
+            ...$this->seo(
+                title: '3D Printing Help for Beginners in Chichester | Files, Photos & Advice',
+                description: 'Beginner-friendly local 3D printing help in Chichester. Send a file, photo, sketch or description and C3D will advise what can be printed or quoted.',
+                routeName: 'beginners',
+                keywords: [
+                    '3D printing help for beginners Chichester',
+                    '3D printing beginners West Sussex',
+                    '3D printing courses near me',
+                    '3D printing clubs near me',
+                    'beginner 3D printing help',
+                    'local 3D printing advice',
+                    'print a 3D file for beginners',
+                    'turn photo into 3D print',
+                ],
+            ),
+        ]);
+    }
+
     public function shop(): View
     {
         return view('pages.shop', [

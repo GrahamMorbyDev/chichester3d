@@ -33,6 +33,8 @@ class ExampleTest extends TestCase
         $response->assertSee('<meta property="og:title"', false);
         $response->assertSee('<meta property="og:image:alt"', false);
         $response->assertSee('<script type="application/ld+json">', false);
+        $response->assertSee(route('sussex-prototyping'), false);
+        $response->assertSee(route('beginners'), false);
     }
 
     public function test_sitemap_exposes_public_pages_and_images(): void
@@ -46,11 +48,28 @@ class ExampleTest extends TestCase
         $response->assertSee(route('services'), false);
         $response->assertSee(route('print-file'), false);
         $response->assertSee(route('small-batch'), false);
+        $response->assertSee(route('sussex-prototyping'), false);
+        $response->assertSee(route('beginners'), false);
         $response->assertSee(route('about'), false);
         $response->assertSee(route('quote'), false);
         $response->assertSee('<image:image>', false);
         $response->assertDontSee('/admin', false);
         $response->assertDontSee('/request-a-quote/success', false);
+    }
+
+    public function test_local_seo_landing_pages_return_useful_content(): void
+    {
+        $this->get(route('sussex-prototyping'))
+            ->assertOk()
+            ->assertSee('3D Printing &amp; Prototyping Sussex', false)
+            ->assertSee('Local prototype prints', false)
+            ->assertSee('Chichester, Sussex and nearby Hampshire', false);
+
+        $this->get(route('beginners'))
+            ->assertOk()
+            ->assertSee('3D Printing Help for Beginners in Chichester', false)
+            ->assertSee('not currently a formal 3D printing course or club', false)
+            ->assertSee('Send what you have', false);
     }
 
     public function test_robots_points_crawlers_to_the_sitemap_and_blocks_private_paths(): void
