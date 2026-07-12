@@ -133,6 +133,28 @@ class PageController extends Controller
         ]);
     }
 
+    public function tabletopMiniatures(): View
+    {
+        return view('pages.tabletop-miniatures', [
+            ...$this->seo(
+                title: 'Custom Tabletop Miniatures & Terrain Chichester | PLA 3D Printing',
+                description: 'Custom PLA 3D printing for tabletop games in Chichester: terrain, dungeon tiles, bases, tokens, markers, accessories and chunky gaming pieces.',
+                routeName: 'tabletop-miniatures',
+                keywords: [
+                    'custom tabletop miniatures Chichester',
+                    '3D printed tabletop terrain',
+                    '3D printed gaming miniatures',
+                    'tabletop terrain printing Sussex',
+                    'DND terrain 3D printing',
+                    'wargaming terrain 3D printing',
+                    '3D printed miniature bases',
+                    'PLA gaming accessories',
+                    'board game token printing',
+                ],
+            ),
+        ]);
+    }
+
     public function shop(): View
     {
         return view('pages.shop', [
@@ -253,6 +275,11 @@ class PageController extends Controller
                     '@type' => 'Offer',
                     'name' => 'Small Batch 3D Printing',
                     'description' => 'Low-volume PLA print runs for prototypes, brackets, mounts, samples and display items.',
+                ],
+                [
+                    '@type' => 'Offer',
+                    'name' => 'Custom Tabletop Miniatures and Terrain',
+                    'description' => 'PLA printing for tabletop terrain, bases, tokens, markers and gaming accessories.',
                 ],
             ],
             'sameAs' => [],

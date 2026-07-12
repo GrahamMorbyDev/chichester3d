@@ -54,7 +54,7 @@
             <h2 class="text-4xl font-black leading-tight sm:text-5xl">For prototypes, small batches and first-time print jobs.</h2>
             <p class="mt-5 leading-8 text-c3d-muted">C3D helps local customers across Chichester, West Sussex and Hampshire work out what can be printed, what needs changing, and how to get a useful PLA part made without ordering from a faceless factory.</p>
         </div>
-        <div class="grid gap-4 md:grid-cols-3">
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <a class="rounded-lg border border-c3d-ink/10 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-c3d-ink/10" href="{{ route('sussex-prototyping') }}">
                 <span class="text-sm font-black text-c3d-orange">Sussex prototyping</span>
                 <h3 class="mt-4 text-2xl font-black">3D printing & prototyping in Sussex</h3>
@@ -69,6 +69,11 @@
                 <span class="text-sm font-black text-c3d-orange">Short runs</span>
                 <h3 class="mt-4 text-2xl font-black">Small batch 3D printing</h3>
                 <p class="mt-3 leading-7 text-c3d-muted">Low-volume PLA runs for 5 to 100 useful parts, samples and small business items.</p>
+            </a>
+            <a class="rounded-lg border border-c3d-ink/10 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-c3d-ink/10" href="{{ route('tabletop-miniatures') }}">
+                <span class="text-sm font-black text-c3d-orange">Tabletop games</span>
+                <h3 class="mt-4 text-2xl font-black">Custom miniatures & terrain</h3>
+                <p class="mt-3 leading-7 text-c3d-muted">PLA terrain, bases, tokens, markers and gaming accessories for local players.</p>
             </a>
         </div>
     </section>

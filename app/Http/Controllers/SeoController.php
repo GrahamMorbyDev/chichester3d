@@ -153,6 +153,16 @@ class SeoController extends Controller
                 ],
             ],
             [
+                'loc' => route('tabletop-miniatures'),
+                'lastmod' => $lastModified,
+                'changefreq' => 'monthly',
+                'priority' => '0.8',
+                'image' => [
+                    'loc' => asset('images/tabletop-miniatures-pla.png'),
+                    'title' => 'PLA printed tabletop gaming terrain and miniatures',
+                ],
+            ],
+            [
                 'loc' => route('about'),
                 'lastmod' => $lastModified,
                 'changefreq' => 'monthly',

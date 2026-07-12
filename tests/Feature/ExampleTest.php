@@ -50,6 +50,7 @@ class ExampleTest extends TestCase
         $response->assertSee(route('small-batch'), false);
         $response->assertSee(route('sussex-prototyping'), false);
         $response->assertSee(route('beginners'), false);
+        $response->assertSee(route('tabletop-miniatures'), false);
         $response->assertSee(route('about'), false);
         $response->assertSee(route('quote'), false);
         $response->assertSee('<image:image>', false);
@@ -70,6 +71,12 @@ class ExampleTest extends TestCase
             ->assertSee('3D Printing Help for Beginners in Chichester', false)
             ->assertSee('not currently a formal 3D printing course or club', false)
             ->assertSee('Send what you have', false);
+
+        $this->get(route('tabletop-miniatures'))
+            ->assertOk()
+            ->assertSee('Custom Tabletop Miniatures &amp; Terrain Chichester', false)
+            ->assertSee('terrain, dungeon tiles, bases, objective markers, tokens', false)
+            ->assertSee('ultra-fine display miniatures, resin is often the better process', false);
     }
 
     public function test_robots_points_crawlers_to_the_sitemap_and_blocks_private_paths(): void
