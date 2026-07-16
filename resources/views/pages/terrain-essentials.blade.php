@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-    <section class="bg-c3d-ink text-white">
+    <section class="bg-[#061522] text-white">
         <div class="mx-auto grid min-h-[calc(100vh-74px)] max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[0.82fr_1.18fr]">
             <div>
                 <img class="mb-8 w-full max-w-md" src="{{ asset('images/terrain-essentials-logo.png') }}" alt="C3D Terrain Essentials logo">
@@ -57,7 +57,7 @@
             <p class="mt-5 leading-8 text-c3d-muted">Use Terrain Essentials for fantasy RPG encounters, Dungeons &amp; Dragons-style campaigns, Games Workshop-style wargaming layouts, sci-fi boards, skirmish tables, club nights and display setups.</p>
             <p class="mt-4 text-sm leading-7 text-c3d-muted">Terrain Essentials is an independent C3D product line. It is not affiliated with, endorsed by or sponsored by Wizards of the Coast, Dungeons &amp; Dragons, Games Workshop or any other tabletop publisher.</p>
         </div>
-        <div class="rounded-lg bg-c3d-ink p-6 text-white">
+        <div class="rounded-lg bg-[#061522] p-6 text-white">
             <p class="text-xs font-black uppercase tracking-[0.08em] text-c3d-orange">Where to buy</p>
             <h3 class="mt-4 text-3xl font-black">Sold through the C3D store and Etsy.</h3>
             <p class="mt-4 leading-8 text-white/70">C3D store listings will sit alongside selected Etsy products as the Terrain Essentials range grows. Local custom terrain enquiries can still come through the quote form.</p>
@@ -68,7 +68,7 @@
         </div>
     </section>
 
-    <section class="bg-c3d-ink text-white">
+    <section class="bg-[#061522] text-white">
         <div class="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
             <div>
                 <h2 class="text-4xl font-black">Want a custom board piece or club batch?</h2>
