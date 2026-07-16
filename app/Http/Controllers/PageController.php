@@ -155,6 +155,32 @@ class PageController extends Controller
         ]);
     }
 
+    public function terrainEssentials(): View
+    {
+        return view('pages.terrain-essentials', [
+            ...$this->seo(
+                title: 'Terrain Essentials | 3D Printed Tabletop Terrain & Buildings',
+                description: 'Terrain Essentials by C3D: matte grey PLA tabletop terrain, sci-fi barricades, buildings, ruins and gaming accessories for D&D-style RPGs, wargaming and tabletop games.',
+                routeName: 'terrain-essentials',
+                keywords: [
+                    'Terrain Essentials',
+                    '3D printed tabletop terrain',
+                    'matte grey PLA terrain',
+                    'D&D terrain',
+                    'wargaming terrain',
+                    'Games Workshop terrain accessories',
+                    'sci-fi barricade terrain',
+                    'tabletop buildings and ruins',
+                    'paintable PLA terrain',
+                    'Etsy tabletop terrain',
+                    'Chichester tabletop terrain',
+                ],
+                ogImage: asset('images/terrain-essentials-promo.png'),
+                ogImageAlt: 'Terrain Essentials sci-fi tabletop terrain board with matte grey PLA buildings, barricades and gaming pieces',
+            ),
+        ]);
+    }
+
     public function shop(): View
     {
         $products = Product::query()
@@ -227,7 +253,7 @@ class PageController extends Controller
      * @param  array<int, string>  $keywords
      * @return array<string, mixed>
      */
-    private function seo(string $title, string $description, string $routeName, array $keywords): array
+    private function seo(string $title, string $description, string $routeName, array $keywords, ?string $ogImage = null, ?string $ogImageAlt = null): array
     {
         $baseKeywords = [
             'Chichester 3D Printing.com',
@@ -244,8 +270,8 @@ class PageController extends Controller
             'canonicalUrl' => route($routeName),
             'ogTitle' => $title,
             'ogDescription' => $description,
-            'ogImage' => asset('images/bambu-p1s-ams-hero.png'),
-            'ogImageAlt' => 'Bambu P1S style 3D printer with AMS multicolour PLA filament setup for local Chichester 3D printing',
+            'ogImage' => $ogImage ?? asset('images/bambu-p1s-ams-hero.png'),
+            'ogImageAlt' => $ogImageAlt ?? 'Bambu P1S style 3D printer with AMS multicolour PLA filament setup for local Chichester 3D printing',
             'ogType' => 'website',
             'twitterCard' => 'summary_large_image',
             'structuredData' => $this->structuredData($title, $description),

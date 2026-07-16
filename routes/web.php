@@ -18,6 +18,7 @@ Route::get('/small-batch-printing', [PageController::class, 'smallBatch'])->name
 Route::get('/3d-printing-prototyping-sussex', [PageController::class, 'sussexPrototyping'])->name('sussex-prototyping');
 Route::get('/3d-printing-for-beginners-chichester', [PageController::class, 'beginners'])->name('beginners');
 Route::get('/custom-tabletop-miniatures', [PageController::class, 'tabletopMiniatures'])->name('tabletop-miniatures');
+Route::get('/terrain-essentials', [PageController::class, 'terrainEssentials'])->name('terrain-essentials');
 Route::get('/shop', [PageController::class, 'shop'])->name('shop');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'quote'])->name('contact');

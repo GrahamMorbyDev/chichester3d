@@ -163,6 +163,16 @@ class SeoController extends Controller
                 ],
             ],
             [
+                'loc' => route('terrain-essentials'),
+                'lastmod' => $lastModified,
+                'changefreq' => 'weekly',
+                'priority' => '0.9',
+                'image' => [
+                    'loc' => asset('images/terrain-essentials-promo.png'),
+                    'title' => 'Terrain Essentials matte grey PLA tabletop terrain',
+                ],
+            ],
+            [
                 'loc' => route('about'),
                 'lastmod' => $lastModified,
                 'changefreq' => 'monthly',

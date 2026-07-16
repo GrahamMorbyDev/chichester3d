@@ -52,6 +52,7 @@ class ExampleTest extends TestCase
         $response->assertSee(route('sussex-prototyping'), false);
         $response->assertSee(route('beginners'), false);
         $response->assertSee(route('tabletop-miniatures'), false);
+        $response->assertSee(route('terrain-essentials'), false);
         $response->assertSee(route('about'), false);
         $response->assertSee(route('quote'), false);
         $response->assertSee('<image:image>', false);
@@ -78,6 +79,14 @@ class ExampleTest extends TestCase
             ->assertSee('Custom Tabletop Miniatures &amp; Terrain Chichester', false)
             ->assertSee('terrain, dungeon tiles, bases, objective markers, tokens', false)
             ->assertSee('ultra-fine display miniatures, resin is often the better process', false);
+
+        $this->get(route('terrain-essentials'))
+            ->assertOk()
+            ->assertSee('Terrain Essentials | 3D Printed Tabletop Terrain &amp; Buildings', false)
+            ->assertSee('Sold through the C3D store and Etsy', false)
+            ->assertSee('matte grey PLA', false)
+            ->assertSee('commercially compostable under the right industrial conditions', false)
+            ->assertSee('not affiliated with, endorsed by or sponsored by', false);
     }
 
     public function test_robots_points_crawlers_to_the_sitemap_and_blocks_private_paths(): void
