@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Product;
 use App\Models\QuoteRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -100,6 +101,30 @@ class ExampleTest extends TestCase
         $response->assertJsonPath('name', 'Chichester 3D Printing.com');
         $response->assertJsonPath('short_name', 'C3D');
         $response->assertJsonPath('theme_color', '#17212b');
+    }
+
+    public function test_shop_groups_products_by_category_and_shows_multiple_images(): void
+    {
+        Product::query()->create([
+            'title' => 'Sci-Fi Barricade Pack',
+            'slug' => 'sci-fi-barricade-pack',
+            'short_description' => 'Chunky PLA barricades for tabletop games.',
+            'description' => 'A printed terrain pack with multiple wall angles.',
+            'price' => 24.00,
+            'category' => 'Tabletop Terrain',
+            'material' => 'PLA',
+            'colour_options' => ['Grey' => 'Primer style'],
+            'images' => ['products/barricade-main.jpg', 'products/barricade-angle.jpg'],
+            'active' => true,
+        ]);
+
+        $response = $this->get(route('shop'));
+
+        $response->assertOk();
+        $response->assertSee('Tabletop Terrain', false);
+        $response->assertSee('Sci-Fi Barricade Pack', false);
+        $response->assertSee('products/barricade-main.jpg', false);
+        $response->assertSee('products/barricade-angle.jpg', false);
     }
 
     public function test_quote_request_can_be_submitted_with_an_upload(): void

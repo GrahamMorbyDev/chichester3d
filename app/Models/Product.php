@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 #[Fillable([
     'title',
@@ -20,6 +21,11 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     public const CATEGORIES = [
+        'Tabletop Terrain' => 'Tabletop Terrain',
+        'Gaming Accessories' => 'Gaming Accessories',
+        'Buildings & Ruins' => 'Buildings & Ruins',
+        'Custom Campaign Pieces' => 'Custom Campaign Pieces',
+        'Miniature Bases & Displays' => 'Miniature Bases & Displays',
         'Desk & Gaming' => 'Desk & Gaming',
         'Home Organisation' => 'Home Organisation',
         'Garden & Pond' => 'Garden & Pond',
@@ -35,5 +41,24 @@ class Product extends Model
             'active' => 'boolean',
             'price' => 'decimal:2',
         ];
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function imageUrls(): array
+    {
+        return collect($this->images ?? [])
+            ->filter()
+            ->values()
+            ->map(fn (string $path): string => str_starts_with($path, 'http') || str_starts_with($path, '/')
+                ? $path
+                : Storage::disk('public')->url($path))
+            ->all();
+    }
+
+    public function primaryImageUrl(): ?string
+    {
+        return $this->imageUrls()[0] ?? null;
     }
 }

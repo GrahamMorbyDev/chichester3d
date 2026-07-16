@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use App\Models\Product;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -54,6 +55,22 @@ class ProductForm
                         KeyValue::make('colour_options')
                             ->keyLabel('Colour')
                             ->valueLabel('Notes')
+                            ->columnSpanFull(),
+                        FileUpload::make('images')
+                            ->label('Product images')
+                            ->helperText('Upload at least two images: a main product shot and a second detail, scale or angle shot.')
+                            ->disk('public')
+                            ->directory('products')
+                            ->visibility('public')
+                            ->image()
+                            ->multiple()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->minFiles(2)
+                            ->maxFiles(8)
+                            ->imagePreviewHeight('180')
+                            ->panelLayout('grid')
+                            ->required()
                             ->columnSpanFull(),
                     ]),
             ]);

@@ -157,14 +157,24 @@ class PageController extends Controller
 
     public function shop(): View
     {
+        $products = Product::query()
+            ->where('active', true)
+            ->orderBy('category')
+            ->latest()
+            ->get();
+
         return view('pages.shop', [
-            'products' => Product::query()->where('active', true)->latest()->get(),
+            'products' => $products,
+            'productsByCategory' => $products->groupBy('category'),
             ...$this->seo(
                 title: '3D Printed Products Chichester | Desk, Gaming, Garden & Custom Parts',
-                description: 'Browse C3D printed product lines including gaming case bookends, desk accessories, home organisation, garden fittings and custom printed parts.',
+                description: 'Browse C3D printed product lines including tabletop terrain, gaming accessories, buildings, desk accessories, home organisation and custom printed parts.',
                 routeName: 'shop',
                 keywords: [
                     '3D printed products Chichester',
+                    '3D printed tabletop terrain',
+                    '3D printed gaming accessories',
+                    '3D printed buildings and ruins',
                     'gaming case bookends',
                     '3D printed desk accessories',
                     '3D printed garden fittings',

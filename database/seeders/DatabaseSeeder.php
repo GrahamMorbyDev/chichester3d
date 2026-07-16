@@ -35,15 +35,18 @@ class DatabaseSeeder extends Seeder
                 'category' => 'Desk & Gaming',
                 'material' => 'PLA',
                 'colour_options' => ['Black' => 'Default', 'White' => 'Clean desk setup', 'Orange' => 'C3D accent'],
-                'images' => [],
+                'images' => ['products/example-main-placeholder.png', 'products/example-detail-placeholder.png'],
                 'active' => true,
             ],
         );
 
         foreach ([
-            ['desk-cable-clips', 'Desk Cable Clips', 'Small PLA clips for tidying charger, USB and controller cables.', 'Home Organisation'],
-            ['pond-sensor-mount', 'Pond Sensor Mount', 'Customisable PLA mount direction for lightweight pond and garden sensor positioning.', 'Garden & Pond'],
-            ['prototype-bracket-sample', 'Prototype Bracket Sample', 'Example bracket listing for small batch and replacement part enquiries.', 'Custom Parts'],
+            ['sci-fi-barricade-pack', 'Sci-Fi Barricade Pack', 'Chunky PLA tabletop barricades for generic sci-fi skirmish boards and RPG encounters.', 'Tabletop Terrain'],
+            ['dungeon-scatter-terrain', 'Dungeon Scatter Terrain', 'Small crates, barrels, doors and table pieces for fantasy campaign encounters.', 'Tabletop Terrain'],
+            ['dice-tray-token-holder', 'Dice Tray & Token Holder', 'A practical PLA dice tray with space for gaming tokens and condition markers.', 'Gaming Accessories'],
+            ['ruined-wall-sections', 'Ruined Wall Sections', 'Modular damaged wall sections for fantasy or sci-fi tabletop layouts.', 'Buildings & Ruins'],
+            ['custom-objective-markers', 'Custom Objective Markers', 'Numbered or themed markers for local club games, campaigns and small events.', 'Custom Campaign Pieces'],
+            ['miniature-display-plinths', 'Miniature Display Plinths', 'Simple display plinths and bases for painted tabletop models.', 'Miniature Bases & Displays'],
         ] as [$slug, $title, $shortDescription, $category]) {
             Product::query()->updateOrCreate(
                 ['slug' => $slug],
@@ -55,7 +58,7 @@ class DatabaseSeeder extends Seeder
                     'category' => $category,
                     'material' => 'PLA',
                     'colour_options' => ['Black' => 'Available', 'White' => 'Available', 'Custom' => 'Ask first'],
-                    'images' => [],
+                    'images' => ['products/example-main-placeholder.png', 'products/example-detail-placeholder.png'],
                     'active' => true,
                 ],
             );
