@@ -33,6 +33,8 @@ class ExampleTest extends TestCase
         $response->assertSee('max-image-preview:large', false);
         $response->assertSee('<meta property="og:title"', false);
         $response->assertSee('<meta property="og:image:alt"', false);
+        $response->assertSee('https://www.googletagmanager.com/gtag/js?id=G-TEFSP625ZC', false);
+        $response->assertSee("gtag('config', 'G-TEFSP625ZC');", false);
         $response->assertSee('<script type="application/ld+json">', false);
         $response->assertSee(route('sussex-prototyping'), false);
         $response->assertSee(route('beginners'), false);

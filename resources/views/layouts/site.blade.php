@@ -43,6 +43,14 @@
         <meta name="twitter:image" content="{{ $ogImage ?? asset('images/c3d-social-card.png') }}">
         <meta name="twitter:image:alt" content="{{ $ogImageAlt ?? 'Local 3D printing workshop image for Chichester 3D Printing.com' }}">
 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFSP625ZC"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-TEFSP625ZC');
+        </script>
+
         @isset($structuredData)
             <script type="application/ld+json">
                 {!! json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
