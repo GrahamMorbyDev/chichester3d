@@ -112,6 +112,29 @@ class ExampleTest extends TestCase
         $response->assertJsonPath('theme_color', '#17212b');
     }
 
+    public function test_custom_404_page_uses_c3d_error_design(): void
+    {
+        $response = $this->get('/missing-build-plate');
+
+        $response->assertNotFound();
+        $response->assertSee('Lost layer detected', false);
+        $response->assertSee('This part did not stick to the build plate.', false);
+        $response->assertSee('As terrifying and painful as reality can be', false);
+        $response->assertSee('Parzival, Ready Player One', false);
+        $response->assertSee('noindex, follow', false);
+    }
+
+    public function test_generic_error_page_can_render(): void
+    {
+        $response = $this->view('errors.500', [
+            'exception' => new \RuntimeException('Test exception'),
+        ]);
+
+        $response->assertSee('Print interrupted', false);
+        $response->assertSee('The machine paused itself before making a mess.', false);
+        $response->assertSee('Request a Quote', false);
+    }
+
     public function test_shop_groups_products_by_category_and_shows_product_listing_image(): void
     {
         Product::query()->create([

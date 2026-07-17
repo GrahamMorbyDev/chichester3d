@@ -2,7 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\LatestProducts;
 use App\Filament\Widgets\LatestQuoteRequests;
+use App\Filament\Widgets\StoreStats;
 use BackedEnum;
 use Filament\Pages\Dashboard as BaseDashboard;
 use Filament\Schemas\Components\View;
@@ -25,7 +27,9 @@ class Dashboard extends BaseDashboard
     public function getWidgets(): array
     {
         return [
+            StoreStats::class,
             LatestQuoteRequests::class,
+            LatestProducts::class,
         ];
     }
 
