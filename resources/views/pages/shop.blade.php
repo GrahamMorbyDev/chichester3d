@@ -48,7 +48,19 @@
                                     <p class="mt-3 leading-7 text-c3d-muted">{{ $product->short_description }}</p>
                                     <div class="mt-5 flex items-center justify-between gap-4">
                                         <span class="font-black">{{ $product->price ? 'GBP '.$product->price : 'Quote' }}</span>
-                                        <a href="{{ route('quote') }}" class="rounded-lg bg-c3d-ink px-4 py-2 text-sm font-black text-white">Enquire</a>
+                                        <div class="flex flex-wrap justify-end gap-2">
+                                            @if ($product->hasStripePaymentLink())
+                                                <a href="{{ $product->stripe_payment_url }}" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-c3d-teal px-4 py-2 text-sm font-black text-white">Buy Now</a>
+                                            @endif
+
+                                            @if ($product->hasEtsyUrl())
+                                                <a href="{{ $product->etsy_url }}" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-c3d-ink/15 px-4 py-2 text-sm font-black text-c3d-ink">Etsy</a>
+                                            @endif
+
+                                            @unless ($product->hasStripePaymentLink())
+                                                <a href="{{ route('quote') }}" class="rounded-lg bg-c3d-ink px-4 py-2 text-sm font-black text-white">Enquire</a>
+                                            @endunless
+                                        </div>
                                     </div>
                                 </div>
                             </article>

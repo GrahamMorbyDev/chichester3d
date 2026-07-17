@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
     'short_description',
     'description',
     'price',
+    'stripe_payment_url',
+    'etsy_url',
     'category',
     'material',
     'colour_options',
@@ -60,5 +62,15 @@ class Product extends Model
     public function primaryImageUrl(): ?string
     {
         return $this->imageUrls()[0] ?? null;
+    }
+
+    public function hasStripePaymentLink(): bool
+    {
+        return filled($this->stripe_payment_url);
+    }
+
+    public function hasEtsyUrl(): bool
+    {
+        return filled($this->etsy_url);
     }
 }

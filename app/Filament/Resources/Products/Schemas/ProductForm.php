@@ -44,6 +44,18 @@ class ProductForm
                             Toggle::make('active')
                                 ->default(true),
                         ]),
+                        Grid::make(2)->schema([
+                            TextInput::make('stripe_payment_url')
+                                ->label('Stripe Payment Link')
+                                ->helperText('Paste the hosted Stripe Payment Link for Buy Now.')
+                                ->url()
+                                ->maxLength(255),
+                            TextInput::make('etsy_url')
+                                ->label('Etsy listing URL')
+                                ->helperText('Optional marketplace link for the same product.')
+                                ->url()
+                                ->maxLength(255),
+                        ]),
                         TextInput::make('short_description')
                             ->required()
                             ->maxLength(220)

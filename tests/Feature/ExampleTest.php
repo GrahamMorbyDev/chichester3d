@@ -120,6 +120,8 @@ class ExampleTest extends TestCase
             'short_description' => 'Chunky PLA barricades for tabletop games.',
             'description' => 'A printed terrain pack with multiple wall angles.',
             'price' => 24.00,
+            'stripe_payment_url' => 'https://buy.stripe.com/test_barricade',
+            'etsy_url' => 'https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack',
             'category' => 'Tabletop Terrain',
             'material' => 'PLA',
             'colour_options' => ['Grey' => 'Primer style'],
@@ -134,6 +136,9 @@ class ExampleTest extends TestCase
         $response->assertSee('Sci-Fi Barricade Pack', false);
         $response->assertSee('products/barricade-main.jpg', false);
         $response->assertSee('products/barricade-angle.jpg', false);
+        $response->assertSee('https://buy.stripe.com/test_barricade', false);
+        $response->assertSee('Buy Now', false);
+        $response->assertSee('https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack', false);
     }
 
     public function test_quote_request_can_be_submitted_with_an_upload(): void

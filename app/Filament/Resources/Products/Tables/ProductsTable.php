@@ -41,6 +41,16 @@ class ProductsTable
                     ->money('GBP')
                     ->placeholder('Quote only')
                     ->sortable(),
+                IconColumn::make('stripe_payment_url')
+                    ->label('Stripe')
+                    ->boolean()
+                    ->state(fn (Product $record): bool => $record->hasStripePaymentLink())
+                    ->toggleable(),
+                IconColumn::make('etsy_url')
+                    ->label('Etsy')
+                    ->boolean()
+                    ->state(fn (Product $record): bool => $record->hasEtsyUrl())
+                    ->toggleable(),
                 TextColumn::make('material')
                     ->badge()
                     ->color('gray')
