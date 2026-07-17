@@ -8,7 +8,7 @@
 
         <div class="mx-auto flex min-h-[calc(100vh-74px)] max-w-7xl items-center px-5 py-12 sm:px-8">
             <div class="max-w-3xl">
-                <img class="mb-8 w-full max-w-xl" src="{{ asset('images/terrain-essentials-logo.png') }}" alt="C3D Terrain Essentials logo">
+                <img class="mb-8 w-full max-w-xl drop-shadow-2xl" src="{{ asset('images/terrain-essentials-logo-transparent.png') }}" alt="C3D Terrain Essentials logo">
                 <p class="mb-4 text-xs font-black uppercase tracking-[0.1em] text-c3d-teal">C3D Store | Matte Grey PLA Terrain</p>
                 <h1 class="text-4xl font-black leading-[0.98] sm:text-7xl">Build better battlefields.</h1>
                 <p class="mt-6 max-w-2xl text-lg leading-8 text-white/78">Shop cinematic sci-fi terrain, missile silo scenery, industrial pipework, buildings, ruins and gaming accessories printed in paint-ready matte grey PLA.</p>

@@ -4,7 +4,7 @@
     <section class="bg-[#061522] text-white">
         <div class="mx-auto grid min-h-[calc(100vh-74px)] max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[0.82fr_1.18fr]">
             <div>
-                <img class="mb-8 w-full max-w-md" src="{{ asset('images/terrain-essentials-logo.png') }}" alt="C3D Terrain Essentials logo">
+                <img class="mb-8 w-full max-w-md drop-shadow-2xl" src="{{ asset('images/terrain-essentials-logo-transparent.png') }}" alt="C3D Terrain Essentials logo">
                 <p class="mb-4 text-xs font-black uppercase tracking-[0.08em] text-c3d-teal">3D printed tabletop terrain</p>
                 <h1 class="text-4xl font-black leading-tight sm:text-7xl">Matte grey PLA terrain, buildings and accessories for the tabletop.</h1>
                 <p class="mt-6 max-w-2xl text-lg leading-8 text-white/70">Terrain Essentials is the C3D tabletop range: sci-fi barricades, ruins, buildings, dungeon pieces, objective markers and accessories printed in matte grey PLA, ready for priming, painting and play.</p>
