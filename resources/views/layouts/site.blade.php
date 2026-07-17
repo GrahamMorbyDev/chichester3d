@@ -60,6 +60,7 @@
                     <nav class="hidden items-center gap-x-6 text-sm font-medium text-c3d-ink/70 lg:flex" aria-label="Main navigation">
                         <a class="hover:text-c3d-ink" href="{{ route('services') }}">Services</a>
                         <a class="hover:text-c3d-ink" href="{{ route('terrain-essentials') }}">Terrain</a>
+                        <a class="hover:text-c3d-ink" href="{{ route('shop') }}">Store</a>
                         <a class="hover:text-c3d-ink" href="{{ route('print-file') }}">Print My File</a>
                         <a class="hover:text-c3d-ink" href="{{ route('small-batch') }}">Small Batch</a>
                         <a class="hover:text-c3d-ink" href="{{ route('about') }}">About</a>
@@ -83,6 +84,7 @@
                 <nav id="mobile-menu" class="mt-4 grid gap-2 border-t border-c3d-ink/10 pt-4 text-sm font-bold text-c3d-ink lg:hidden" x-cloak x-show="menuOpen" x-on:click.outside="menuOpen = false" aria-label="Mobile navigation">
                     <a class="rounded-lg px-3 py-3 hover:bg-white" href="{{ route('services') }}" x-on:click="menuOpen = false">Services</a>
                     <a class="rounded-lg px-3 py-3 hover:bg-white" href="{{ route('terrain-essentials') }}" x-on:click="menuOpen = false">Terrain Essentials</a>
+                    <a class="rounded-lg px-3 py-3 hover:bg-white" href="{{ route('shop') }}" x-on:click="menuOpen = false">Store</a>
                     <a class="rounded-lg px-3 py-3 hover:bg-white" href="{{ route('print-file') }}" x-on:click="menuOpen = false">Print My File</a>
                     <a class="rounded-lg px-3 py-3 hover:bg-white" href="{{ route('small-batch') }}" x-on:click="menuOpen = false">Small Batch</a>
                     <a class="rounded-lg px-3 py-3 hover:bg-white" href="{{ route('about') }}" x-on:click="menuOpen = false">About</a>

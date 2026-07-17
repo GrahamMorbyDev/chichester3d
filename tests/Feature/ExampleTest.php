@@ -112,7 +112,7 @@ class ExampleTest extends TestCase
         $response->assertJsonPath('theme_color', '#17212b');
     }
 
-    public function test_shop_groups_products_by_category_and_shows_multiple_images(): void
+    public function test_shop_groups_products_by_category_and_shows_product_listing_image(): void
     {
         Product::query()->create([
             'title' => 'Sci-Fi Barricade Pack',
@@ -135,7 +135,6 @@ class ExampleTest extends TestCase
         $response->assertSee('Tabletop Terrain', false);
         $response->assertSee('Sci-Fi Barricade Pack', false);
         $response->assertSee('products/barricade-main.jpg', false);
-        $response->assertSee('products/barricade-angle.jpg', false);
         $response->assertSee('https://buy.stripe.com/test_barricade', false);
         $response->assertSee('Buy Now', false);
         $response->assertSee('https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack', false);

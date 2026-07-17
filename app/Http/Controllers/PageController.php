@@ -193,20 +193,24 @@ class PageController extends Controller
             'products' => $products,
             'productsByCategory' => $products->groupBy('category'),
             ...$this->seo(
-                title: '3D Printed Products Chichester | Desk, Gaming, Garden & Custom Parts',
-                description: 'Browse C3D printed product lines including tabletop terrain, gaming accessories, buildings, desk accessories, home organisation and custom printed parts.',
+                title: 'Terrain Essentials Store | 3D Printed Tabletop Terrain & Accessories',
+                description: 'Shop Terrain Essentials by C3D: matte grey PLA tabletop terrain, sci-fi barricades, buildings, ruins, gaming accessories and useful 3D printed products.',
                 routeName: 'shop',
                 keywords: [
+                    'Terrain Essentials store',
                     '3D printed products Chichester',
                     '3D printed tabletop terrain',
                     '3D printed gaming accessories',
                     '3D printed buildings and ruins',
+                    'matte grey PLA terrain',
                     'gaming case bookends',
                     '3D printed desk accessories',
                     '3D printed garden fittings',
                     'custom printed parts',
                     'PLA printed products',
                 ],
+                ogImage: asset('images/terrain-essentials-promo.png'),
+                ogImageAlt: 'Terrain Essentials matte grey PLA tabletop terrain and buildings on a sci-fi gaming board',
             ),
         ]);
     }
