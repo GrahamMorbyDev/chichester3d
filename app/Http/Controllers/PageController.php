@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -189,29 +190,34 @@ class PageController extends Controller
             ->latest()
             ->get();
 
+        $seo = $this->seo(
+            title: 'Terrain Essentials Store | Sci-Fi Tabletop Terrain, Buildings & Accessories',
+            description: 'Shop Terrain Essentials by C3D for matte grey PLA tabletop terrain, sci-fi barricades, missile silo scenery, industrial pipe terrain, buildings, ruins and gaming accessories.',
+            routeName: 'shop',
+            keywords: [
+                'Terrain Essentials store',
+                '3D printed tabletop terrain',
+                'sci-fi tabletop terrain',
+                'matte grey PLA terrain',
+                'missile silo terrain',
+                'industrial pipe terrain',
+                '3D printed buildings and ruins',
+                'wargaming terrain',
+                'D&D terrain',
+                'tabletop gaming accessories',
+                'paintable PLA terrain',
+                'Etsy tabletop terrain',
+                '3D printed products Chichester',
+            ],
+            ogImage: asset('images/terrain-essentials-missile-silo-terrain.png'),
+            ogImageAlt: 'Terrain Essentials sci-fi missile silo tabletop terrain and matte grey PLA buildings',
+        );
+        $seo['structuredData'] = $this->shopStructuredData($products, $seo['metaTitle'], $seo['metaDescription']);
+
         return view('pages.shop', [
             'products' => $products,
             'productsByCategory' => $products->groupBy('category'),
-            ...$this->seo(
-                title: 'Terrain Essentials Store | 3D Printed Tabletop Terrain & Accessories',
-                description: 'Shop Terrain Essentials by C3D: matte grey PLA tabletop terrain, sci-fi barricades, buildings, ruins, gaming accessories and useful 3D printed products.',
-                routeName: 'shop',
-                keywords: [
-                    'Terrain Essentials store',
-                    '3D printed products Chichester',
-                    '3D printed tabletop terrain',
-                    '3D printed gaming accessories',
-                    '3D printed buildings and ruins',
-                    'matte grey PLA terrain',
-                    'gaming case bookends',
-                    '3D printed desk accessories',
-                    '3D printed garden fittings',
-                    'custom printed parts',
-                    'PLA printed products',
-                ],
-                ogImage: asset('images/terrain-essentials-promo.png'),
-                ogImageAlt: 'Terrain Essentials matte grey PLA tabletop terrain and buildings on a sci-fi gaming board',
-            ),
+            ...$seo,
         ]);
     }
 
@@ -327,6 +333,55 @@ class PageController extends Controller
             'subjectOf' => [
                 '@type' => 'WebPage',
                 'name' => $title,
+            ],
+        ];
+    }
+
+    /**
+     * @param  Collection<int, Product>  $products
+     * @return array<string, mixed>
+     */
+    private function shopStructuredData($products, string $title, string $description): array
+    {
+        return [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                $this->structuredData($title, $description),
+                [
+                    '@type' => 'CollectionPage',
+                    '@id' => route('shop').'#collection',
+                    'name' => $title,
+                    'description' => $description,
+                    'url' => route('shop'),
+                    'image' => asset('images/terrain-essentials-missile-silo-terrain.png'),
+                    'isPartOf' => [
+                        '@id' => route('home').'#business',
+                    ],
+                    'mainEntity' => [
+                        '@type' => 'ItemList',
+                        'name' => 'Terrain Essentials products',
+                        'itemListElement' => $products->values()->map(fn (Product $product, int $index): array => [
+                            '@type' => 'ListItem',
+                            'position' => $index + 1,
+                            'url' => route('shop').'#'.$product->slug,
+                            'item' => [
+                                '@type' => 'Product',
+                                'name' => $product->title,
+                                'description' => $product->short_description,
+                                'category' => $product->category,
+                                'material' => $product->material,
+                                'image' => $product->primaryImageUrl(),
+                                'offers' => [
+                                    '@type' => 'Offer',
+                                    'price' => $product->price,
+                                    'priceCurrency' => 'GBP',
+                                    'availability' => 'https://schema.org/InStock',
+                                    'url' => $product->stripe_payment_url ?: route('shop').'#'.$product->slug,
+                                ],
+                            ],
+                        ])->all(),
+                    ],
+                ],
             ],
         ];
     }
