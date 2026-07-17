@@ -118,14 +118,14 @@ class ExampleTest extends TestCase
             'title' => 'Sci-Fi Barricade Pack',
             'slug' => 'sci-fi-barricade-pack',
             'short_description' => 'Chunky PLA barricades for tabletop games.',
-            'description' => 'A printed terrain pack with multiple wall angles.',
+            'description' => '<p>A printed terrain pack with multiple wall angles.</p><p>Supplied unpainted and ready to prime.</p>',
             'price' => 24.00,
             'stripe_payment_url' => 'https://buy.stripe.com/test_barricade',
             'etsy_url' => 'https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack',
             'category' => 'Tabletop Terrain',
             'material' => 'PLA',
             'colour_options' => ['Grey' => 'Primer style'],
-            'images' => ['products/barricade-main.jpg', 'products/barricade-angle.jpg'],
+            'images' => ['products/barricade-main.jpg'],
             'active' => true,
         ]);
 
@@ -146,14 +146,14 @@ class ExampleTest extends TestCase
             'title' => 'Sci-Fi Barricade Pack',
             'slug' => 'sci-fi-barricade-pack',
             'short_description' => 'Chunky PLA barricades for tabletop games.',
-            'description' => 'A printed terrain pack with multiple wall angles.',
+            'description' => '<p>A printed terrain pack with multiple wall angles.</p><p>Supplied unpainted and ready to prime.</p>',
             'price' => 24.00,
             'stripe_payment_url' => 'https://buy.stripe.com/test_barricade',
             'etsy_url' => 'https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack',
             'category' => 'Tabletop Terrain',
             'material' => 'PLA',
             'colour_options' => ['Grey' => 'Primer style'],
-            'images' => ['products/barricade-main.jpg', 'products/barricade-angle.jpg'],
+            'images' => ['products/barricade-main.jpg'],
             'active' => true,
         ]);
 
@@ -161,6 +161,8 @@ class ExampleTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Buy Now', false);
+        $response->assertSee('<p>A printed terrain pack with multiple wall angles.</p>', false);
+        $response->assertSee('<p>Supplied unpainted and ready to prime.</p>', false);
         $response->assertSee('https://buy.stripe.com/test_barricade', false);
         $response->assertSee('View on Etsy', false);
         $response->assertSee('https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack', false);

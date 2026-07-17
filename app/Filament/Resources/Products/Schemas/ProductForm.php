@@ -5,8 +5,8 @@ namespace App\Filament\Resources\Products\Schemas;
 use App\Models\Product;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Grid;
@@ -60,9 +60,10 @@ class ProductForm
                             ->required()
                             ->maxLength(220)
                             ->columnSpanFull(),
-                        Textarea::make('description')
+                        RichEditor::make('description')
+                            ->label('Product description')
                             ->required()
-                            ->rows(5)
+                            ->helperText('Use paragraphs and lists so the product page is easier to read.')
                             ->columnSpanFull(),
                         KeyValue::make('colour_options')
                             ->keyLabel('Colour')
@@ -70,7 +71,7 @@ class ProductForm
                             ->columnSpanFull(),
                         FileUpload::make('images')
                             ->label('Product images')
-                            ->helperText('Upload at least two images: a main product shot and a second detail, scale or angle shot.')
+                            ->helperText('Upload at least one main product image. Extra detail, scale or angle shots are optional.')
                             ->disk('public')
                             ->directory('products')
                             ->visibility('public')
@@ -78,7 +79,7 @@ class ProductForm
                             ->multiple()
                             ->reorderable()
                             ->appendFiles()
-                            ->minFiles(2)
+                            ->minFiles(1)
                             ->maxFiles(8)
                             ->imagePreviewHeight('180')
                             ->panelLayout('grid')

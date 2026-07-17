@@ -436,7 +436,7 @@ class PageController extends Controller
                     '@type' => 'Product',
                     '@id' => route('product', $product).'#product',
                     'name' => $product->title,
-                    'description' => $product->description,
+                    'description' => trim(strip_tags($product->description)),
                     'category' => $product->category,
                     'material' => $product->material,
                     'image' => $product->imageUrls(),

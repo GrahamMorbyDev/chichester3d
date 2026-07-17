@@ -1,6 +1,17 @@
 @extends('layouts.site')
 
 @section('content')
+    @php
+        $description = trim((string) $product->description);
+        $descriptionHasHtml = $description !== strip_tags($description);
+        $descriptionHtml = $descriptionHasHtml
+            ? strip_tags($description, '<p><br><strong><b><em><i><ul><ol><li><a><h2><h3><h4>')
+            : collect(preg_split('/\R{2,}/', $description) ?: [])
+                ->filter()
+                ->map(fn (string $paragraph): string => '<p>'.e(preg_replace('/\s*\R\s*/', ' ', $paragraph)).'</p>')
+                ->implode('');
+    @endphp
+
     <section class="bg-[#061522] px-5 py-12 text-white sm:px-8">
         <div class="mx-auto max-w-7xl">
             <a href="{{ route('shop') }}" class="text-sm font-black text-c3d-teal">Back to Store</a>
@@ -26,7 +37,9 @@
                 <div class="rounded-lg border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/10 sm:p-8">
                     <p class="mb-4 text-xs font-black uppercase tracking-[0.1em] text-c3d-orange">{{ $product->category }}</p>
                     <h1 class="text-4xl font-black leading-tight sm:text-6xl">{{ $product->title }}</h1>
-                    <p class="mt-6 text-lg leading-8 text-white/70">{{ $product->description }}</p>
+                    <div class="mt-6 space-y-5 text-lg leading-8 text-white/70 [&_a]:font-bold [&_a]:text-c3d-teal [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-white [&_h3]:text-xl [&_h3]:font-black [&_h3]:text-white [&_li]:pl-1 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_strong]:text-white [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
+                        {!! $descriptionHtml !!}
+                    </div>
 
                     <dl class="mt-8 grid gap-3 sm:grid-cols-2">
                         <div class="rounded-lg bg-white/5 p-4">
