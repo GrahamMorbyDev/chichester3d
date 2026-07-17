@@ -221,6 +221,41 @@ class PageController extends Controller
         ]);
     }
 
+    public function product(Product $product): View
+    {
+        abort_unless($product->active, 404);
+
+        $title = $product->title.' | Terrain Essentials Store';
+        $description = $product->short_description.' Printed in PLA by C3D for tabletop games, terrain collections and custom gaming boards.';
+
+        $seo = $this->seo(
+            title: $title,
+            description: $description,
+            routeName: 'product',
+            keywords: [
+                $product->title,
+                $product->category,
+                'Terrain Essentials',
+                '3D printed tabletop terrain',
+                'matte grey PLA terrain',
+                'paintable tabletop terrain',
+                'wargaming terrain',
+                'D&D terrain',
+                'tabletop gaming accessories',
+            ],
+            routeParameters: ['product' => $product],
+            ogImage: $product->primaryImageUrl() ?? asset('images/terrain-essentials-missile-silo-terrain.png'),
+            ogImageAlt: $product->title.' product image',
+        );
+        $seo['structuredData'] = $this->productStructuredData($product, $title, $description);
+
+        return view('pages.product', [
+            'product' => $product,
+            'imageUrls' => $product->imageUrls(),
+            ...$seo,
+        ]);
+    }
+
     public function about(): View
     {
         return view('pages.about', [
@@ -263,7 +298,7 @@ class PageController extends Controller
      * @param  array<int, string>  $keywords
      * @return array<string, mixed>
      */
-    private function seo(string $title, string $description, string $routeName, array $keywords, ?string $ogImage = null, ?string $ogImageAlt = null): array
+    private function seo(string $title, string $description, string $routeName, array $keywords, array $routeParameters = [], ?string $ogImage = null, ?string $ogImageAlt = null): array
     {
         $baseKeywords = [
             'Chichester 3D Printing.com',
@@ -277,7 +312,7 @@ class PageController extends Controller
             'metaTitle' => $title,
             'metaDescription' => $description,
             'metaKeywords' => implode(', ', array_values(array_unique([...$keywords, ...$baseKeywords]))),
-            'canonicalUrl' => route($routeName),
+            'canonicalUrl' => route($routeName, $routeParameters),
             'ogTitle' => $title,
             'ogDescription' => $description,
             'ogImage' => $ogImage ?? asset('images/bambu-p1s-ams-hero.png'),
@@ -376,10 +411,43 @@ class PageController extends Controller
                                     'price' => $product->price,
                                     'priceCurrency' => 'GBP',
                                     'availability' => 'https://schema.org/InStock',
-                                    'url' => $product->stripe_payment_url ?: route('shop').'#'.$product->slug,
+                                    'url' => route('product', $product),
                                 ],
                             ],
                         ])->all(),
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function productStructuredData(Product $product, string $title, string $description): array
+    {
+        return [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                $this->structuredData($title, $description),
+                [
+                    '@type' => 'Product',
+                    '@id' => route('product', $product).'#product',
+                    'name' => $product->title,
+                    'description' => $product->description,
+                    'category' => $product->category,
+                    'material' => $product->material,
+                    'image' => $product->imageUrls(),
+                    'brand' => [
+                        '@type' => 'Brand',
+                        'name' => 'Terrain Essentials',
+                    ],
+                    'offers' => [
+                        '@type' => 'Offer',
+                        'price' => $product->price,
+                        'priceCurrency' => 'GBP',
+                        'availability' => 'https://schema.org/InStock',
+                        'url' => $product->stripe_payment_url ?: route('product', $product),
                     ],
                 ],
             ],

@@ -20,6 +20,7 @@ Route::get('/3d-printing-for-beginners-chichester', [PageController::class, 'beg
 Route::get('/custom-tabletop-miniatures', [PageController::class, 'tabletopMiniatures'])->name('tabletop-miniatures');
 Route::get('/terrain-essentials', [PageController::class, 'terrainEssentials'])->name('terrain-essentials');
 Route::get('/shop', [PageController::class, 'shop'])->name('shop');
+Route::get('/shop/{product:slug}', [PageController::class, 'product'])->name('product');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'quote'])->name('contact');
 Route::get('/request-a-quote', [PageController::class, 'quote'])->name('quote');

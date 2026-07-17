@@ -135,8 +135,34 @@ class ExampleTest extends TestCase
         $response->assertSee('Tabletop Terrain', false);
         $response->assertSee('Sci-Fi Barricade Pack', false);
         $response->assertSee('products/barricade-main.jpg', false);
-        $response->assertSee('https://buy.stripe.com/test_barricade', false);
+        $response->assertSee(route('product', 'sci-fi-barricade-pack'), false);
+        $response->assertSee('View Product', false);
+        $response->assertDontSee('https://buy.stripe.com/test_barricade', false);
+    }
+
+    public function test_product_page_contains_buy_now_and_etsy_links(): void
+    {
+        $product = Product::query()->create([
+            'title' => 'Sci-Fi Barricade Pack',
+            'slug' => 'sci-fi-barricade-pack',
+            'short_description' => 'Chunky PLA barricades for tabletop games.',
+            'description' => 'A printed terrain pack with multiple wall angles.',
+            'price' => 24.00,
+            'stripe_payment_url' => 'https://buy.stripe.com/test_barricade',
+            'etsy_url' => 'https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack',
+            'category' => 'Tabletop Terrain',
+            'material' => 'PLA',
+            'colour_options' => ['Grey' => 'Primer style'],
+            'images' => ['products/barricade-main.jpg', 'products/barricade-angle.jpg'],
+            'active' => true,
+        ]);
+
+        $response = $this->get(route('product', $product));
+
+        $response->assertOk();
         $response->assertSee('Buy Now', false);
+        $response->assertSee('https://buy.stripe.com/test_barricade', false);
+        $response->assertSee('View on Etsy', false);
         $response->assertSee('https://www.etsy.com/uk/listing/123456789/sci-fi-barricade-pack', false);
     }
 
