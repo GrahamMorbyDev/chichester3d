@@ -176,7 +176,7 @@ class PageController extends Controller
                     'Etsy tabletop terrain',
                     'Chichester tabletop terrain',
                 ],
-                ogImage: asset('images/terrain-essentials-promo.png'),
+                ogImage: asset('images/terrain-essentials-social-card.png'),
                 ogImageAlt: 'Terrain Essentials sci-fi tabletop terrain board with matte grey PLA buildings, barricades and gaming pieces',
             ),
         ]);
@@ -209,7 +209,7 @@ class PageController extends Controller
                 'Etsy tabletop terrain',
                 '3D printed products Chichester',
             ],
-            ogImage: asset('images/terrain-essentials-missile-silo-terrain.png'),
+            ogImage: asset('images/terrain-essentials-store-social-card.png'),
             ogImageAlt: 'Terrain Essentials sci-fi missile silo tabletop terrain and matte grey PLA buildings',
         );
         $seo['structuredData'] = $this->shopStructuredData($products, $seo['metaTitle'], $seo['metaDescription']);
@@ -315,7 +315,9 @@ class PageController extends Controller
             'canonicalUrl' => route($routeName, $routeParameters),
             'ogTitle' => $title,
             'ogDescription' => $description,
-            'ogImage' => $ogImage ?? asset('images/bambu-p1s-ams-hero.png'),
+            'ogImage' => $ogImage ?? asset('images/c3d-social-card.png'),
+            'ogImageWidth' => 1200,
+            'ogImageHeight' => 630,
             'ogImageAlt' => $ogImageAlt ?? 'Bambu P1S style 3D printer with AMS multicolour PLA filament setup for local Chichester 3D printing',
             'ogType' => 'website',
             'twitterCard' => 'summary_large_image',

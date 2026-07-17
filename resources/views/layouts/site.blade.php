@@ -29,14 +29,18 @@
         <meta property="og:description" content="{{ $ogDescription ?? $metaDescription ?? 'Local 3D printing in Chichester for prototypes, small batch printing, custom parts and replacement plastic parts.' }}">
         <meta property="og:type" content="{{ $ogType ?? 'website' }}">
         <meta property="og:url" content="{{ $canonicalUrl ?? url()->current() }}">
-        <meta property="og:image" content="{{ $ogImage ?? asset('images/bambu-p1s-ams-hero.png') }}">
+        <meta property="og:image" content="{{ $ogImage ?? asset('images/c3d-social-card.png') }}">
+        <meta property="og:image:secure_url" content="{{ $ogImage ?? asset('images/c3d-social-card.png') }}">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="{{ $ogImageWidth ?? 1200 }}">
+        <meta property="og:image:height" content="{{ $ogImageHeight ?? 630 }}">
         <meta property="og:image:alt" content="{{ $ogImageAlt ?? 'Local 3D printing workshop image for Chichester 3D Printing.com' }}">
         <meta property="og:locale" content="en_GB">
 
         <meta name="twitter:card" content="{{ $twitterCard ?? 'summary_large_image' }}">
         <meta name="twitter:title" content="{{ $ogTitle ?? $metaTitle ?? 'Chichester 3D Printing.com' }}">
         <meta name="twitter:description" content="{{ $ogDescription ?? $metaDescription ?? 'Local 3D printing in Chichester for prototypes, small batch printing, custom parts and replacement plastic parts.' }}">
-        <meta name="twitter:image" content="{{ $ogImage ?? asset('images/bambu-p1s-ams-hero.png') }}">
+        <meta name="twitter:image" content="{{ $ogImage ?? asset('images/c3d-social-card.png') }}">
         <meta name="twitter:image:alt" content="{{ $ogImageAlt ?? 'Local 3D printing workshop image for Chichester 3D Printing.com' }}">
 
         @isset($structuredData)
