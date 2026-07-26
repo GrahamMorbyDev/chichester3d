@@ -20,6 +20,8 @@
             @endforeach
         </div>
 
+        <x-mesh-medic-banner variant="compact" class="mt-10" />
+
         <div class="mt-12 grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
                 <p class="mb-3 text-xs font-black uppercase tracking-[0.08em] text-c3d-orange">Request a quote</p>

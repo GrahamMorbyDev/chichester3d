@@ -31,6 +31,8 @@
                 </article>
             @endforeach
         </div>
+
+        <x-mesh-medic-banner class="mt-10" />
     </section>
 
     <section class="bg-white">

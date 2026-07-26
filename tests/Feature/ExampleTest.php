@@ -38,6 +38,8 @@ class ExampleTest extends TestCase
         $response->assertSee('<script type="application/ld+json">', false);
         $response->assertSee(route('sussex-prototyping'), false);
         $response->assertSee(route('beginners'), false);
+        $response->assertSee('https://mesh-medic.com/', false);
+        $response->assertSee('Broken mesh? Send it to Mesh Medic before it hits the printer.', false);
     }
 
     public function test_sitemap_exposes_public_pages_and_images(): void
@@ -60,6 +62,18 @@ class ExampleTest extends TestCase
         $response->assertSee('<image:image>', false);
         $response->assertDontSee('/admin', false);
         $response->assertDontSee('/request-a-quote/success', false);
+    }
+
+    public function test_mesh_medic_stl_repair_banner_appears_on_file_pages(): void
+    {
+        foreach ([route('home'), route('services'), route('print-file')] as $url) {
+            $this->get($url)
+                ->assertOk()
+                ->assertSee('STL repair partner', false)
+                ->assertSee('Mesh Medic repairs STL files', false)
+                ->assertSee('https://mesh-medic.com/', false)
+                ->assertSee('Repair an STL', false);
+        }
     }
 
     public function test_local_seo_landing_pages_return_useful_content(): void

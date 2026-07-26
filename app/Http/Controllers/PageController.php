@@ -14,7 +14,7 @@ class PageController extends Controller
         return view('pages.home', [
             ...$this->seo(
                 title: '3D Printing Chichester | Local PLA Prototypes & Short Runs',
-                description: 'Chichester 3D Printing.com provides local Bambu P1S PLA printing, prototypes, replacement parts, custom design and small batch runs across West Sussex and Hampshire.',
+                description: 'Chichester 3D Printing.com provides local Bambu P1S PLA printing, prototypes, replacement parts, custom design, STL repair links and small batch runs across West Sussex and Hampshire.',
                 routeName: 'home',
                 keywords: [
                     '3D printing Chichester',
@@ -26,6 +26,8 @@ class PageController extends Controller
                     'AMS multicolour 3D printing',
                     'prototype printing Chichester',
                     'replacement plastic parts',
+                    'STL repair service',
+                    'Mesh Medic STL repair',
                     'small batch 3D printing',
                 ],
             ),
@@ -37,7 +39,7 @@ class PageController extends Controller
         return view('pages.services', [
             ...$this->seo(
                 title: '3D Printing Services Chichester | Print Files, Design & Small Batch',
-                description: 'Explore C3D services: print my file, design and print, custom replacement parts, prototypes and small batch PLA 3D printing around Chichester.',
+                description: 'Explore C3D services: print my file, design and print, custom replacement parts, STL repair help through Mesh Medic, prototypes and small batch PLA printing around Chichester.',
                 routeName: 'services',
                 keywords: [
                     '3D printing services Chichester',
@@ -46,6 +48,8 @@ class PageController extends Controller
                     'custom 3D printing West Sussex',
                     'small batch printing Hampshire',
                     'prototype printing service',
+                    'STL repair service',
+                    'repair broken STL file',
                 ],
             ),
         ]);
@@ -55,12 +59,16 @@ class PageController extends Controller
     {
         return view('pages.print-file', [
             ...$this->seo(
-                title: 'Print My File Chichester | Upload STL, 3MF, STEP or OBJ',
-                description: 'Upload your STL, 3MF, STEP or OBJ file for local PLA 3D printing on Bambu P1S printers with AMS multicolour capability in Chichester.',
+                title: 'Print or Repair My STL File Chichester | Upload STL, 3MF, STEP or OBJ',
+                description: 'Upload your STL, 3MF, STEP or OBJ file for local PLA 3D printing, or use Mesh Medic to repair broken STL meshes before printing with C3D in Chichester.',
                 routeName: 'print-file',
                 keywords: [
                     'print my file Chichester',
                     'upload STL Chichester',
+                    'repair STL file',
+                    'broken STL repair',
+                    'Mesh Medic',
+                    'Mesh Medic STL repair',
                     '3MF 3D printing',
                     'STEP file 3D printing',
                     'OBJ 3D printing service',

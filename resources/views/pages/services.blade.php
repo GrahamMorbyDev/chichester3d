@@ -22,6 +22,8 @@
             @endforeach
         </div>
 
+        <x-mesh-medic-banner class="mt-10" />
+
         <section class="mt-14 rounded-lg bg-c3d-ink p-6 text-white sm:p-8">
             <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
                 <div>
